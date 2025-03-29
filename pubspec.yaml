@@ -1,0 +1,39 @@
+name: repo_app
+description: "A Repository Search application."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1  # Make sure it's at the correct indentation
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0  # Keep this inside dev_dependencies
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/splash_icon.png"  # Path to your custom logo
+  adaptive_icon_background: "#ffffff"  # Optional for Android adaptive icons
+  adaptive_icon_foreground: "assets/icons/splash_icon_foreground.png"
+
+
+  flutter_lints: ^3.0.0
+flutter:
+  assets:
+       - assets/icons/splash_icon.png
+
