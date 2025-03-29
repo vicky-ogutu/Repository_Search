@@ -22,6 +22,8 @@ class _RepositorySearchScreenState extends ConsumerState<RepositorySearchScreen>
     if (username.isNotEmpty) {
       currentUser = username;
       ref.read(repositoryProvider.notifier).fetchRepositories(username);
+    }else{
+      throw Exception("Enter username");
     }
   }
 
@@ -42,12 +44,13 @@ class _RepositorySearchScreenState extends ConsumerState<RepositorySearchScreen>
             TextField(
               controller: searchField,
               decoration: InputDecoration(
-                labelText: "Enter Github Username",
+                labelText: "Enter username",
                 border: OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(Icons.search_outlined),
                   onPressed: search,
                 ),
+
               ),
               onSubmitted: (_) =>search(),
             ),
@@ -55,6 +58,11 @@ class _RepositorySearchScreenState extends ConsumerState<RepositorySearchScreen>
             Expanded(
               child: repoState.when(
                 data: (data) {
+                  if(data.isEmpty){
+                    return const Center(child: Text("Search Repository."));
+                  }
+
+
                   return ListView.builder(
                     itemCount: data.isNotEmpty && ref.read(repositoryProvider.notifier).hasMore ? data.length + 1 : data.length,
                     itemBuilder: (context, index) {
