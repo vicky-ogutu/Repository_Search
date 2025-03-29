@@ -1,4 +1,4 @@
-class User {
+class Repository {
   String? login;
   int? id;
   String? nodeId;
@@ -19,7 +19,7 @@ class User {
   String? userViewType;
   bool? siteAdmin;
 
-User({
+Repository({
     this.login,
     this.id,
     this.nodeId,
@@ -44,7 +44,7 @@ User({
 
 
 
-factory User.fromJson(Map<String, dynamic> json) => User(
+factory Repository.fromJson(Map<String, dynamic> json) => Repository(
   avatarUrl: json["avatar_url"],
   login: json["login"],
   reposUrl: json["repos_url"]
