@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds:3), () {
+    Timer(Duration(seconds:2), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>RepositorySearchScreen()));
 
     });
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset("assets/icons/splash_icon.png", width: 40, height: 40),
             const SizedBox(height: 30),// Custom PNG Icon
-            Text("Repository Search"),
+            Text("Welcome to Github Repository"),
 
           ],
         ),

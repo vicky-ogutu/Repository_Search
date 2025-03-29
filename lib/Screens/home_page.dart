@@ -27,11 +27,12 @@ class _RepositorySearchScreenState extends ConsumerState<RepositorySearchScreen>
 
   @override
   Widget build(BuildContext context) {
-
     final repoState = ref.watch(repositoryProvider);
     return Scaffold(
       appBar: AppBar(
-      title: Text("Search Repository"),
+      title: Text("Repository search screen"),
+        backgroundColor: Theme.of(context).colorScheme.primary, // Uses seedColor (0xff2bb6aa)
+        foregroundColor: Theme.of(context).colorScheme.onPrimary, // Ensures text/icons contrast well
     ),
 
       body:Padding(
@@ -44,41 +45,49 @@ class _RepositorySearchScreenState extends ConsumerState<RepositorySearchScreen>
                 labelText: "Enter Github Username",
                 border: OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                   onPressed: search,
                 ),
               ),
               onSubmitted: (_) =>search(),
             ),
             const SizedBox(height: 8),
-            Expanded(child: repoState.when(
-                data: (data){
+            Expanded(
+              child: repoState.when(
+                data: (data) {
                   return ListView.builder(
-                      itemCount: data.length,
-                      itemBuilder: (context, index){
-
-                        if (index < data.length) {
-                          final repo = data[index];
-                          return ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(repo.avatarUrl ?? "unknown image"),
-                            ),
-                            title: Text(repo.reposUrl ?? "unknown repo"),
-                            subtitle: Text(repo.login ?? "unknown login"),
-                          );
-                        } else if (ref.read(repositoryProvider.notifier).hasMore) {
-                          return TextButton(
+                    itemCount: data.isNotEmpty && ref.read(repositoryProvider.notifier).hasMore ? data.length + 1 : data.length,
+                    itemBuilder: (context, index) {
+                      if (index < data.length) {
+                        final repo = data[index];
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(repo.avatarUrl ?? ""),
+                          ),
+                          title: Text(repo.name ?? "Unknown Repo"),
+                          subtitle: Text(repo.owner ?? "Unknown User"),
+                        );
+                      } else if (ref.read(repositoryProvider.notifier).hasMore) {
+                        return Center(
+                          child: TextButton(
                             onPressed: () => ref.read(repositoryProvider.notifier).fetchRepositories(currentUser, loadMore: true),
                             child: const Text('Load More'),
-                          );
-                        } else {
-                          return const SizedBox.shrink();
-                        }
-
-                      });
+                          ),
+                        );
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    },
+                  );
                 },
-                error: (error, stackTrace)=> Text(error.toString()),
-                loading: ()=> const CircularProgressIndicator()))
+                error: (error, stackTrace) => Center(
+                  child: Text(error.toString()),
+                ),
+                loading: () => const Center(child: CircularProgressIndicator()),
+              ),
+            ),
+
+
 
           ],
         ),

@@ -12,6 +12,12 @@ class RepositoryService{
 
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);
+
+      if (data.isEmpty) {
+        print("No repositories found.");
+        throw Exception("No repositories found");
+        return [];
+      }
       print(data.toList());
       return data.map((repo) => Repository.fromJson(repo)).toList();
     } else {

@@ -20,20 +20,24 @@ class RepositoryNotifier extends StateNotifier<AsyncValue<List<Repository>>> {
   final Ref ref;
   int page = 1;
   bool hasMore = true;
+  String lastSearched = '';
 
   Future<void> fetchRepositories(String username, {bool loadMore = false}) async {
     if (state.isLoading || (!hasMore && loadMore)) return;
 
     try {
-      if (!loadMore) {
+      if (!loadMore || username != lastSearched) {
         page = 1;
         hasMore = true;
+
+        lastSearched = username;
+        state = const AsyncValue.loading(); // Reset state for new search
       }
 
       final service = ref.read(repositoryServiceProvider);
-      final fetchedRepos = await service.fetchRepositories(username, page, 10);
+      final fetchedRepos = await service.fetchRepositories(username, page, 8);
 
-      if (fetchedRepos.length < 10) {
+      if (fetchedRepos.length < 8) {
         hasMore = false;
       }
 
