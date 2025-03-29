@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class RepositorySearchScreen extends ConsumerStatefulWidget {
+  const RepositorySearchScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<RepositorySearchScreen> createState() => _RepositorySearchScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RepositorySearchScreenState extends ConsumerState<RepositorySearchScreen> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();

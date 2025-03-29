@@ -5,7 +5,7 @@ import 'package:repo_app/Utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 class RepositoryService{
-  Future<List<Repository>> fetchRepo(String username, int page, int per_page) async{
+  Future<List<Repository>> fetchRepositories(String username, int page, int per_page) async{
 
     final url = Uri.parse('${Constants.baseURL}/$username/repos?page=$page&per_page=$per_page');
     final response = await http.get(url);

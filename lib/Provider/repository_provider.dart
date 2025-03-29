@@ -31,7 +31,7 @@ class RepositoryNotifier extends StateNotifier<AsyncValue<List<Repository>>> {
       }
 
       final service = ref.read(repositoryServiceProvider);
-      final fetchedRepos = await service.fetchRepo(username, page, 10);
+      final fetchedRepos = await service.fetchRepositories(username, page, 10);
 
       if (fetchedRepos.length < 10) {
         hasMore = false;
