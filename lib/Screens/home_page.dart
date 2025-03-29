@@ -41,19 +41,31 @@ class _RepositorySearchScreenState extends ConsumerState<RepositorySearchScreen>
         padding: EdgeInsets.all(8),
         child: Column(
           children: [
+
             TextField(
               controller: searchField,
               decoration: InputDecoration(
                 labelText: "Enter username",
                 border: OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  icon: const Icon(Icons.search_outlined),
-                  onPressed: search,
+                  onPressed: search,  // Calls search function when clicked
+                  icon: Container(
+                    padding: const EdgeInsets.all(8), // Adds spacing inside the container
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,  // Background color
+                      borderRadius: BorderRadius.circular(8),  // Rounded corners
+                    ),
+                    child: Image.asset(
+                      "assets/icons/search_icon.png",
+                      width: 24,
+                      height: 24,
+                    ),
+                  ),
                 ),
-
               ),
-              onSubmitted: (_) =>search(),
+              onSubmitted: (_) => search(),
             ),
+
             const SizedBox(height: 8),
             Expanded(
               child: repoState.when(

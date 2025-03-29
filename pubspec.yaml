@@ -38,4 +38,5 @@ flutter_icons:
 flutter:
   assets:
        - assets/icons/splash_icon.png
+       - assets/icons/search_icon.png
 
