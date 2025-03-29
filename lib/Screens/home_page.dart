@@ -31,7 +31,16 @@ class _RepositorySearchScreenState extends ConsumerState<RepositorySearchScreen>
     return Scaffold(
       appBar: AppBar(
       title: Text("Search Repository"),
+    ),
 
+      body:Padding(
+        padding: EdgeInsets.all(8),
+        child: Column(
+          children: [
+
+          ],
+        ),
+      )
 
     );
   }
