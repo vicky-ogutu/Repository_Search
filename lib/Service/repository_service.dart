@@ -12,9 +12,11 @@ class RepositoryService{
 
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);
+      print(data.toList());
       return data.map((repo) => Repository.fromJson(repo)).toList();
     } else {
       throw Exception('Failed to fetch repositories');
+
     }
   }
 

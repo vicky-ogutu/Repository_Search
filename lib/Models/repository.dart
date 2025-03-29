@@ -1,8 +1,8 @@
 class Repository {
-  String? login;
+  String login;
   int? id;
   String? nodeId;
-  String? avatarUrl;
+  String avatarUrl;
   String? gravatarId;
   String? url;
   String? htmlUrl;
@@ -12,7 +12,7 @@ class Repository {
   String? starredUrl;
   String? subscriptionsUrl;
   String? organizationsUrl;
-  String? reposUrl;
+  String reposUrl;
   String? eventsUrl;
   String? receivedEventsUrl;
   String? type;
@@ -20,10 +20,10 @@ class Repository {
   bool? siteAdmin;
 
 Repository({
-    this.login,
+    required this.login,
     this.id,
     this.nodeId,
-    this.avatarUrl,
+    required this.avatarUrl,
     this.gravatarId,
     this.url,
     this.htmlUrl,
@@ -33,7 +33,7 @@ Repository({
     this.starredUrl,
     this.subscriptionsUrl,
     this.organizationsUrl,
-    this.reposUrl,
+    required this.reposUrl,
     this.eventsUrl,
     this.receivedEventsUrl,
     this.type,
